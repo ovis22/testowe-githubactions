@@ -25,4 +25,4 @@ jobs:
         run: echo "time=$(date +%s)" >> $GITHUB_OUTPUT
 
       - name: Odczytaj znacznik czasu
-        run: echo "Znacznik: ${{ steps.stamp.outputs.time }}"
+        run: 'echo "Znacznik: ${{ steps.stamp.outputs.time }}"'
