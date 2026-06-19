@@ -1,0 +1,26 @@
+name: Conditional Deploy and Environments
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Uruchomienie testów
+        run: echo "testy..."
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Wdrozenie produkcyjne
+        run: echo "Wdrazam na produkcje"
