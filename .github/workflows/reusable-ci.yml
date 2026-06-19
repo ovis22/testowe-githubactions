@@ -1,0 +1,23 @@
+name: Reusable CI Pattern
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        required: true
+        type: string
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Klonowanie repozytorium
+        uses: actions/checkout@v4
+
+      - name: Konfiguracja Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '${{ inputs.node-version }}'
+
+      - name: Instalacja i testy
+        run: npm ci && npm test
