@@ -1,0 +1,25 @@
+name: Build Info
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Klonowanie repozytorium
+        uses: actions/checkout@v4
+
+      - name: Wyswietlenie zawartosci repozytorium
+        run: ls -la
+
+      - name: Konfiguracja Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Sprawdzenie wersji Node.js
+        run: node --version
