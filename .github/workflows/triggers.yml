@@ -1,0 +1,19 @@
+name: Event Triggers
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+    paths-ignore:
+      - 'docs/**'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-triggers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sprawdzenie uruchomienia
+        run: echo "Workflow uruchomiony poprawnie przez zdarzenie ${{ github.event_name }}"
