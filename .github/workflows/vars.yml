@@ -1,0 +1,28 @@
+name: Variables and Outputs
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  GREETING: "Czesc z Actions"
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wypisz zmienna i konteksty
+        run: |
+          echo "$GREETING"
+          echo "Autor: ${{ github.actor }}"
+          echo "Zdarzenie: ${{ github.event_name }}"
+          echo "SHA: ${{ github.sha }}"
+
+      - name: Ustaw znacznik czasu (Output)
+        id: stamp
+        run: echo "time=$(date +%s)" >> $GITHUB_OUTPUT
+
+      - name: Odczytaj znacznik czasu
+        run: echo "Znacznik: ${{ steps.stamp.outputs.time }}"
